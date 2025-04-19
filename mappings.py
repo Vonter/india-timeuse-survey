@@ -364,6 +364,11 @@ INDUSTRY_CODE_MAPPING = {
     "92": "Gambling and betting activities",
     "93": "Sports activities and amusement and recreation activities",
     "94": "Activities of membership organizations",
+    "95": "Repair of computers and personal and household goods",
+    "96": "Other personal service activities",
+    "97": "Activities of households as employers of domestic personnel",
+    "98": "Undifferentiated goods- and services-producing activities of private households for own use",
+    "99": "Activities of extraterritorial organizations and bodies"
 }
 
 # Relation to head mapping

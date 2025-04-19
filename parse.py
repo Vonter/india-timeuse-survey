@@ -68,14 +68,14 @@ def map_district_codes(df):
         print("Either 'FOD Sub-Region' or 'District' column not found in DataFrame")
         return df
     
-    print("Mapping district codes using individual_daily_schedule/districts.csv")
+    print("Mapping district codes using raw/districts.csv")
     
     try:
         # Ensure log directory exists
         os.makedirs('logs', exist_ok=True)
         
         # Read reference district data
-        districts_df = pd.read_csv('individual_daily_schedule/districts.csv')
+        districts_df = pd.read_csv('raw/districts.csv')
         
         # Prepare data for mapping
         print("Preparing district lookup...")
@@ -185,14 +185,14 @@ def main():
     
     print("Reading household data...")
     # Read household data
-    household_df = pd.read_csv('individual_daily_schedule/tus106hh.csv')
+    household_df = pd.read_csv('raw/tus106hh.csv')
     
     print(f"Household data shape: {household_df.shape}")
     print(f"Household data columns: {household_df.columns.tolist()}")
     
     print("\nReading person data...")
     # Read person data
-    person_df = pd.read_csv('individual_daily_schedule/TUS106PER.csv')
+    person_df = pd.read_csv('raw/TUS106PER.csv')
     
     print(f"Person data shape: {person_df.shape}")
     print(f"Person data columns: {person_df.columns.tolist()}")
