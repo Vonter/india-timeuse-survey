@@ -9,6 +9,7 @@ To browse the old version of the repository for the Time Use Survey, 2019, brows
 ## Data
 
 * [data/individual_daily_schedule.parquet](data/individual_daily_schedule.parquet): Individual profiles with detailed daily time use schedule.
+* [data/individual_daily_schedule_full.parquet](data/individual_daily_schedule_full.parquet): Individual profiles with detailed daily time use schedule, including all fields from raw source dataset.
 
 For more details, refer to the [DATA.md](DATA.md).
 
@@ -41,10 +42,6 @@ Ensure the source CSV datasets are present in the `raw` directory before running
 # Generate the individual profiles Parquet dataset
 python parse.py
 ```
-
-## TODO
-
-- Include additional Parquet file with all source fields retained
 
 ## Credits
 
