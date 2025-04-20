@@ -10,6 +10,8 @@ To browse the old version of the repository for the Time Use Survey, 2019, brows
 
 * [data/individual_daily_schedule.parquet](data/individual_daily_schedule.parquet): Individual profiles with detailed daily time use schedule.
 
+For more details, refer to the [DATA.md](DATA.md).
+
 ## Scripts
 
 - [parse.py](parse.py): Parses the raw source data, and generates the individual profiles Parquet dataset
@@ -42,10 +44,17 @@ python parse.py
 
 ## TODO
 
-- Document sources for mapping codes to names
-- Document a data dictionary
-- Add field for region code/name mapping
+- Include additional Parquet file with all source fields retained
 
 ## Credits
 
 - [MoSPI](https://mospi.gov.in)
+
+## Read More
+
+- [PIB press release on TUS 2024](https://pib.gov.in/PressReleasePage.aspx?PRID=2106113)
+- [MoSPI report, TUS 2024](https://www.mospi.gov.in/sites/default/files/publication_reports/TUS_Factsheet_25022025.pdf)
+
+## AI Declaration
+
+Components of this repository, including code and documentation, were written with assistance from Claude AI.
