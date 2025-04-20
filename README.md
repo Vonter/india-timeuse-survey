@@ -2,7 +2,7 @@
 
 Pre-processed datasets of time use survey data for India. Sourced from the [Time Use Survey, 2024](https://microdata.gov.in/NADA/index.php/catalog/236).
 
-Explore the dataset using https://india-timeuse-survey.netlify.app/ (thanks to [thedivtagguy](https://github.com/thedivtagguy) for the explorer!)
+Explore the raw dataset, calculate activity-wise summaries, and run time analyses with various aggregations using the [India Time Use Survey Explorer](https://diagramchasing.fun/2025/time-use-explorer).
 
 To browse the old version of the repository for the Time Use Survey, 2019, browse the [2019/](2019) folder.
 
@@ -44,8 +44,6 @@ python parse.py
 
 - Document sources for mapping codes to names
 - Document a data dictionary
-- Dataset with activitywise duration in minutes
-- Dataset with aggregation by demographic group
 - Add field for region code/name mapping
 
 ## Credits
