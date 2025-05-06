@@ -76,10 +76,8 @@ Additional columns in the full dataset:
 | `sub_round` | integer | Sub-round of the survey |
 | `fod_sub_region` | string | Field Operations Division sub-region code |
 | `sample_household_no` | integer | Sample household number |
-| `nsc_person` | float | Normalized Survey Coefficient for person |
-| `mult_person` | float | Multiplier for person |
-| `nsc_household` | float | Normalized Survey Coefficient for household |
-| `mult_household` | float | Multiplier for household |
+| `nsc` | float | Normalized Survey Coefficient |
+| `mult` | float | Multiplier |
 
 ## Mapping from code to name
 

@@ -22,29 +22,27 @@ def map_codes_to_descriptions(df, column_name, mapping_dict):
     print(f"Mapping {column_name} codes to descriptions")
     
     try:
-        # Convert column values to strings, removing decimal points for float values
-        def clean_and_map(val):
-            if pd.isna(val):
-                return "Unknown"
-            
-            # Convert to string
-            str_val = str(val)
-            
-            # Remove decimal point if it's a float (e.g., "1.0" -> "1")
-            if '.' in str_val:
-                try:
-                    # If it can be converted to float and has no decimal part
-                    float_val = float(str_val)
-                    if float_val.is_integer():
-                        str_val = str(int(float_val))
-                except:
-                    pass
-            
-            # Map using the dictionary
-            return mapping_dict.get(str_val, f"Unknown ({val})")
+        # Convert column to string type for consistent mapping
+        df[column_name] = df[column_name].astype(str)
         
-        # Apply the mapping
-        df[column_name] = df[column_name].apply(clean_and_map)
+        # Clean float values by removing .0 suffix
+        mask = df[column_name].str.endswith('.0')
+        df.loc[mask, column_name] = df.loc[mask, column_name].str.replace('.0', '')
+        
+        # Create a Series with mapped values
+        mapped_values = df[column_name].map(mapping_dict)
+        
+        # Handle unmapped values (keeping original value in the 'Unknown' message)
+        unmapped_mask = mapped_values.isna()
+        if unmapped_mask.any():
+            unmapped_values = df.loc[unmapped_mask, column_name]
+            mapped_values.loc[unmapped_mask] = "Unknown (" + unmapped_values + ")"
+        
+        # Replace NaN values with "Unknown"
+        mapped_values = mapped_values.fillna("Unknown")
+        
+        # Update the dataframe column
+        df[column_name] = mapped_values
         
         return df
         
@@ -223,7 +221,7 @@ def main():
     print(f"Merged data shape: {merged_df.shape}")
 
     # Create a new column for the person ID
-    merged_df['person_id'] = merged_df['Schedule ID'].astype(str) + merged_df['FSU Serial No.'].astype(str) + merged_df['Schedule'].astype(str) + merged_df['survey year'].astype(str) + merged_df['Sector'].astype(str) + merged_df['NSS-Region'].astype(str) + merged_df['District'].astype(str) + merged_df['Stratum'].astype(str) + merged_df['Sub-Stratum'].astype(str) + merged_df['Sub-Round'].astype(str) + merged_df['FOD Sub-Region'].astype(str) + merged_df['Sample hhld. No.'].astype(str) + '_' + merged_df['Person serial no.'].astype(str)
+    merged_df['person_id'] =  merged_df['FSU Serial No.'].astype(str) + merged_df['Sample hhld. No.'].astype(str) + '_' + merged_df['Person serial no.'].astype(str)
 
     # Apply mappings to convert code values to human-readable descriptions
     if "District" in merged_df.columns:
@@ -288,7 +286,7 @@ def main():
         merged_df = map_codes_to_descriptions(merged_df, "Is there any care giver available among the household members for caring the person(s)", CAREGIVER_AVAILABLE_MAPPING)
 
     # Drop columns that are not needed
-    merged_df = merged_df.drop(columns=['age.1', 'age', 'District', 'Serial no.of member'])
+    merged_df = merged_df.drop(columns=['age.1', 'age', 'District', 'Serial no.of member', 'NSC_household', 'MULT_household'])
 
     # Make person_id the first column
     merged_df = merged_df[['person_id'] + [col for col in merged_df.columns if col != 'person_id']]
@@ -335,8 +333,8 @@ def main():
                               "srl. No of member": "member_serial_no",
                               "Serial number of the informant": "informant_serial_no",
                               "Gender of the informant": "informant_gender",
-                              "NSC_person": "nsc_person",
-                              "MULT_person": "mult_person",
+                              "NSC_person": "nsc",
+                              "MULT_person": "mult",
                               "Informant Sl.No.": "informant_sl_no",
                               "Response Code": "response_code_household",
                               "Survey Code": "survey_code",
@@ -355,9 +353,7 @@ def main():
                               "Type of structure of the dwelling unit": "dwelling_structure_type",
                               "Is there any member in the household aged 5 years and above who needs special care": "has_member_needing_care",
                               "Is there any care giver available among the household members for caring the person(s)": "has_caregiver_available",
-                              "Time to canvass(minutes)": "time_to_canvass_minutes",
-                              "NSC_household": "nsc_household",
-                              "MULT_household": "mult_household"}, inplace=True)
+                              "Time to canvass(minutes)": "time_to_canvass_minutes"}, inplace=True)
 
     # Reorder columns
     print("\nReordering columns...")
@@ -382,8 +378,7 @@ def main():
                    'response_code_household', 'survey_code', 'household_substitution_reason',
                    'schedule_id', 'fsu_serial_no', 'schedule', 'survey_year', 'sector',
                    'nss_region', 'stratum', 'sub_stratum', 'sub_round', 'fod_sub_region',
-                   'sample_household_no', 'nsc_person', 'mult_person',
-                   'nsc_household', 'mult_household']
+                   'sample_household_no', 'nsc', 'mult']
     
     # Ensure all columns in column_order exist in dataframe
     existing_columns = [col for col in column_order if col in merged_df.columns]
@@ -404,8 +399,7 @@ def main():
     merged_df = merged_df.drop(columns=['schedule_id', 'fsu_serial_no', 'schedule', 'survey_year', 'sector', 
                                       'nss_region', 'stratum', 'sub_stratum', 'sub_round', 
                                       'fod_sub_region', 'sample_household_no'])
-    merged_df = merged_df.drop(columns=['nsc_person', 'mult_person', 'nsc_household', 'mult_household', 
-                                      'informant_serial_no', 'informant_gender', 'informant_sl_no', 
+    merged_df = merged_df.drop(columns=['nsc', 'mult', 'informant_serial_no', 'informant_gender', 'informant_sl_no', 
                                       'time_to_canvass_minutes', 'member_serial_no', 'person_serial_no',
                                       'survey_code', 'household_substitution_reason'])
     merged_df = merged_df.drop(columns=['dwelling_structure_type', 'dwelling_unit', 'floor_sweeping_type', 
