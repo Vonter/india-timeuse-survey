@@ -107,5 +107,7 @@ The source microdata uses codes for various fields. The mappings for code to hum
 - Type of structure of the dwelling unit: https://data.opencity.in/dataset/national-time-use-survey-2024/resource/6a7ad168-aab2-466e-96be-2715dd338ff7/view/b603b92e-0b2b-49e6-a5a6-6ffec0f6da1c (Page 54)
 - Is there any member in the household aged 5 years and above who needs special care: https://data.opencity.in/dataset/national-time-use-survey-2024/resource/6a7ad168-aab2-466e-96be-2715dd338ff7/view/b603b92e-0b2b-49e6-a5a6-6ffec0f6da1c (Page 55)
 - Is there any care giver available among the household members for caring the person(s): https://data.opencity.in/dataset/national-time-use-survey-2024/resource/6a7ad168-aab2-466e-96be-2715dd338ff7/view/b603b92e-0b2b-49e6-a5a6-6ffec0f6da1c (Page 55)
+- Sector: https://data.opencity.in/dataset/national-time-use-survey-2024/resource/d9a26d5b-ceba-4e9f-93cd-348ae7b5cf21/view/b1df2615-6b08-4ff4-b5b7-0c65b459f44b (Page 3)
+
 
 The full list of mappings are stored in the [mappings.py](mappings.py) file.
