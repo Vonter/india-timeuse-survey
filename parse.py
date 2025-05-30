@@ -256,6 +256,8 @@ def main():
         merged_df = map_codes_to_descriptions(merged_df, "response code", RESPONSE_CODE_MAPPING)
     if "Relation to head" in merged_df.columns:
         merged_df = map_codes_to_descriptions(merged_df, "Relation to head", RELATION_TO_HEAD_MAPPING)
+    if "Sector" in merged_df.columns:
+        merged_df = map_codes_to_descriptions(merged_df, "Sector", SECTOR_MAPPING)
     
     # Apply mapping to additional columns for full dataset
     if "Land possessed as on date of survey(code)" in merged_df.columns:
@@ -390,30 +392,15 @@ def main():
     merged_df = merged_df[existing_columns + remaining_columns]
 
     # Save the datasets as parquet
-    print("\nSaving parquet files...")
+    print("\nSaving dataset files...")
 
     # Save the merged dataframe with all fields
-    merged_df.to_parquet('data/individual_daily_schedule_full.parquet')
-    
-    # Drop columns that are not needed
-    merged_df = merged_df.drop(columns=['schedule_id', 'fsu_serial_no', 'schedule', 'survey_year', 'sector', 
-                                      'nss_region', 'stratum', 'sub_stratum', 'sub_round', 
-                                      'fod_sub_region', 'sample_household_no'])
-    merged_df = merged_df.drop(columns=['nsc', 'mult', 'informant_serial_no', 'informant_gender', 'informant_sl_no', 
-                                      'time_to_canvass_minutes', 'member_serial_no', 'person_serial_no',
-                                      'survey_code', 'household_substitution_reason'])
-    merged_df = merged_df.drop(columns=['dwelling_structure_type', 'dwelling_unit', 'floor_sweeping_type', 
-                                      'clothes_washing_type', 'primary_energy_lighting', 'primary_energy_cooking', 
-                                      'yearly_expenditure_durables', 'yearly_expenditure_clothing', 
-                                      'monthly_consumption_in_kind', 'monthly_consumption_home_grown', 
-                                      'monthly_expenditure_purchase', 'land_possessed'])
-    merged_df = merged_df.drop(columns=['response_code_household', 'has_member_needing_care', 'has_caregiver_available',
-                                      'region', 'sub_region'])
+    merged_df.to_parquet('data/timeuse.parquet')
 
-    # Save the merged dataframe
-    merged_df.to_parquet('data/individual_daily_schedule.parquet')
+    # Save as CSV and compress in Zip file
+    merged_df.to_csv('data/timeuse.csv.gz', compression='gzip')
     
-    print("Done! Parquet files saved to data/")
+    print("Done! Files saved to data/")
 
 if __name__ == "__main__":
     main()

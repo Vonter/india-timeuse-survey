@@ -8,8 +8,8 @@ To browse the old version of the repository for the Time Use Survey, 2019, brows
 
 ## Data
 
-* [data/individual_daily_schedule.parquet](data/individual_daily_schedule.parquet): Individual profiles with detailed daily time use schedule.
-* [data/individual_daily_schedule_full.parquet](data/individual_daily_schedule_full.parquet): Individual profiles with detailed daily time use schedule, including all fields from raw source dataset.
+* [timeuse.parquet](data/timeuse.parquet): Individual profiles with detailed daily time use schedule in Parquet format.
+* [timeuse.csv.gz](https://github.com/Vonter/india-timeuse-survey/releases/latest/download/timeuse.csv.gz): Individual profiles with detailed daily time use schedule in CSV format (compressed in Zip file).
 
 For more details, refer to the [DATA.md](DATA.md).
 

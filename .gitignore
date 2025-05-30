@@ -1,4 +1,5 @@
 raw/*
 !raw/districts.csv
+data/timeuse.csv.gz
 
 __pycache__

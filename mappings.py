@@ -515,4 +515,8 @@ CAREGIVER_AVAILABLE_MAPPING = {
     "2": "no"
 }
 
-
+# Sector mapping
+SECTOR_MAPPING = {
+    "1": "Rural",
+    "2": "Urban"
+}

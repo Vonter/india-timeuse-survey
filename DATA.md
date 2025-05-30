@@ -35,11 +35,6 @@ The source microdata is available on the [MoSPI Microdata website](https://micro
 | `day_type` | string | Type of day (normal day, other day) |
 | `relation_to_head` | string | Relationship of the person to the head of household |
 | `response_code` | string | Response code for survey quality control (co-operative, non co-operative) |
-
-Additional columns in the full dataset:
-
-| Variable | Type | Description |
-|----------|------|-------------|
 | `region` | string | Name of the region where the respondent lives (administrative unit larger than district) |
 | `sub_region` | string | Name of the sub-region where the respondent lives (administrative unit between region and district) |
 | `land_possessed` | string | Land possessed by the household as on date of survey |
@@ -99,8 +94,6 @@ The source microdata uses codes for various fields. The mappings for code to hum
 - Day of week: https://data.opencity.in/dataset/national-time-use-survey-2024/resource/d9a26d5b-ceba-4e9f-93cd-348ae7b5cf21/view/b1df2615-6b08-4ff4-b5b7-0c65b459f44b (Page 15)
 - Day type: https://data.opencity.in/dataset/national-time-use-survey-2024/resource/d9a26d5b-ceba-4e9f-93cd-348ae7b5cf21/view/b1df2615-6b08-4ff4-b5b7-0c65b459f44b (Page 15)
 - Response code: https://data.opencity.in/dataset/national-time-use-survey-2024/resource/d9a26d5b-ceba-4e9f-93cd-348ae7b5cf21/view/b1df2615-6b08-4ff4-b5b7-0c65b459f44b (Page 15)
-
-For the additional columns in the full dataset:
 - Gender of the informant: https://data.opencity.in/dataset/national-time-use-survey-2024/resource/d9a26d5b-ceba-4e9f-93cd-348ae7b5cf21/view/b1df2615-6b08-4ff4-b5b7-0c65b459f44b (Page 12)
 - Land possessed: https://data.opencity.in/dataset/national-time-use-survey-2024/resource/d9a26d5b-ceba-4e9f-93cd-348ae7b5cf21/view/b1df2615-6b08-4ff4-b5b7-0c65b459f44b (Page 13)
 - Response code of the informant: https://data.opencity.in/dataset/national-time-use-survey-2024/resource/6a7ad168-aab2-466e-96be-2715dd338ff7/view/b603b92e-0b2b-49e6-a5a6-6ffec0f6da1c (Page 41)
